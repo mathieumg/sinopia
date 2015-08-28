@@ -22,6 +22,7 @@ module.exports.start = function start(dir, conf, cb) {
               , {silent: !process.env.TRAVIS}
     )
     forks.push(f)
+
     f.on('message', function(msg) {
       if ('sinopia_started' in msg) {
         cb(), cb = function(){}

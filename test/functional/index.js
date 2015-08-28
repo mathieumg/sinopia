@@ -6,6 +6,18 @@ var assert = require('assert')
 var async  = require('async')
 var exec   = require('child_process').exec
 
+// there's no obvious way to do this in windows, so don't do this test on win32
+
+function getTaskFiles(pid, cb) {
+    if (process.platform !== 'win32') {
+      exec('lsof -p ' + pid, cb);
+    } else {
+      process.nextTick(function() {
+        cb(null, "windows");
+      });
+    }
+}
+
 describe('Func', function() {
   var server = process.server
   var server2 = process.server2
@@ -27,7 +39,8 @@ describe('Func', function() {
         server.pid = body.pid
 
         return new Promise(function (resolve, reject) {
-          exec('lsof -p ' + Number(server.pid), function(err, result) {
+       
+          getTaskFiles(Number(server.pid), function(err, result) {
             assert.equal(err, null)
             server.fdlist = result.replace(/ +/g, ' ')
             resolve()
@@ -64,7 +77,7 @@ describe('Func', function() {
 
   after(function (cb) {
     async.map([ server, server2 ], function(server, cb) {
-      exec('lsof -p ' + Number(server.pid), function(err, result) {
+      getTaskFiles(Number(server.pid), function(err, result) {
         assert.equal(err, null)
         result = result.split('\n').filter(function(q) {
           if (q.match(/TCP .*->.* \(ESTABLISHED\)/)) return false
