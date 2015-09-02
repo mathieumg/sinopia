@@ -1,6 +1,9 @@
 var assert   = require('assert')
 var Locker = require('../../lib/locker');
 
+
+var lockError = /released automatically/
+
 describe('Locker', function() {
   it('calls the original callback', function(done) {
     var locker = new Locker();
@@ -87,7 +90,7 @@ describe('Locker', function() {
     })
 
     function cb(err) {
-      assert.ok(err && err.message.match(/Operation took longer/))
+      assert.ok(err && err.message.match(lockError))
     }
 
     // this lock should be released after 200 ms
@@ -117,7 +120,7 @@ describe('Locker', function() {
     var released = false;
 
     function cb(err) {
-      assert.ok(err && err.message.match(/Operation took longer/))
+      assert.ok(err && err.message.match(lockError))
       released = true
     }
 
