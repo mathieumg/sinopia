@@ -1,5 +1,20 @@
 `sinopia` - a private/caching npm repository server
 
+## This fork:
+
+* Adds first-class windows support by using resource locking at the API level instead of depending on file-system locking
+* Fixes tests when running on windows
+* Removes dependency on fs-ext
+
+## To build:
+
+yaml doesn't play nicely with npm@3. If using npm3, do this to install:
+
+    js-yaml package.yaml > package.json
+    npm install
+
+## Original readme
+
 [![npm version badge](https://img.shields.io/npm/v/sinopia.svg)](https://www.npmjs.org/package/sinopia)
 [![travis badge](http://img.shields.io/travis/rlidwka/sinopia.svg)](https://travis-ci.org/rlidwka/sinopia)
 [![downloads badge](http://img.shields.io/npm/dm/sinopia.svg)](https://www.npmjs.org/package/sinopia)
