@@ -8,7 +8,7 @@
 
 ## To build:
 
-yaml doesn't play nicely with npm@3. If using npm3, do this to install:
+yapm doesn't play nicely with npm@3. If using npm3, do this to install:
 
     js-yaml package.yaml > package.json
     npm install
