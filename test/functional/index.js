@@ -21,7 +21,7 @@ function getTaskFiles(pid, cb) {
 describe('Func', function() {
   var server = process.server
   var server2 = process.server2
-  
+
   before(function (cb) {
     async.parallel([
       function (cb) {
@@ -44,7 +44,7 @@ describe('Func', function() {
 
       return server.debug().status(200).then(function (body) {
         server.pid = body.pid
-        
+
         return new Promise(function (resolve, reject) {
 
           getTaskFiles(Number(server.pid), function(err, result) {
