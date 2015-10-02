@@ -39,7 +39,7 @@ describe('Func', function() {
         server.pid = body.pid
 
         return new Promise(function (resolve, reject) {
-       
+
           getTaskFiles(Number(server.pid), function(err, result) {
             assert.equal(err, null)
             server.fdlist = result.replace(/ +/g, ' ')
