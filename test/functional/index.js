@@ -21,7 +21,7 @@ function getTaskFiles(pid, cb) {
 describe('Func', function() {
   var server = process.server
   var server2 = process.server2
-
+  
   before(function (cb) {
     async.parallel([
       function (cb) {
@@ -35,9 +35,16 @@ describe('Func', function() {
 
   before(function() {
     return Promise.all([ server, server2 ].map(function(server) {
+
+      // show output from server processes
+      // process.forks.forEach(function(f) {
+      //   f.stdout.pipe(process.stdout)
+      //   f.stderr.pipe(process.stderr)
+      // })
+
       return server.debug().status(200).then(function (body) {
         server.pid = body.pid
-
+        
         return new Promise(function (resolve, reject) {
 
           getTaskFiles(Number(server.pid), function(err, result) {
