@@ -49,11 +49,6 @@ dependencies:
   # node 0.10 compatibility, should go away soon
   readable-stream: '~1.1.0'
 
-optionalDependencies:
-  # those are native modules that could fail to compile
-  # and unavailable on windows
-  # crypt3: '>=0.1.6 <1.0.0-0' # for sinopia-htpasswd
-
 devDependencies:
   #
   # Tools required for testing
@@ -133,5 +128,3 @@ publishConfig:
 license:
   type: WTFPL
   url: http://www.wtfpl.net/txt/copying/
-
-optionalDependencies: null
