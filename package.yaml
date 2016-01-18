@@ -1,7 +1,7 @@
 # use "yapm install ." if you're installing this from git repository
 
 name: sinopib
-version: 1.4.1
+version: 1.4.2
 description: Private npm repository server
 
 author:
@@ -133,3 +133,5 @@ publishConfig:
 license:
   type: WTFPL
   url: http://www.wtfpl.net/txt/copying/
+
+optionalDependencies: null
